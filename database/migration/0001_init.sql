@@ -1,9 +1,9 @@
-CREATE TABLE IF NOT EXISTS client (
+CREATE TABLE IF NOT EXISTS client(
 	id SERIAL PRIMARY KEY,
 	name VARCHAR(50),
 	phone VARCHAR(20),
 	email VARCHAR(50),
-	data_nascimento DATE,
+	birth_date DATE,
 	cpf VARCHAR(20) UNIQUE NOT NULL
 );
 
@@ -15,4 +15,20 @@ CREATE TABLE IF NOT EXISTS room (
 	qty_restrooms SMALLINT DEFAULT 0,
 	hydromassage BOOL DEFAULT false,
 	price FLOAT DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS activity (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(50) NOT NULL,
+	description VARCHAR(255),
+	local VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS reservation (
+	id SERIAL PRIMARY KEY,
+	description VARCHAR(255),
+	id_client INT REFERENCES client(id),
+	date DATE NOT NULL,
+	hour FLOAT,
+	employee VARCHAR(50)
 );
