@@ -32,3 +32,16 @@ CREATE TABLE IF NOT EXISTS reservation (
 	hour FLOAT,
 	employee VARCHAR(50)
 );
+
+CREATE TABLE IF NOT EXISTS reservation_room (
+	id SERIAL PRIMARY KEY,
+	id_room INT REFERENCES room(id),
+	id_reservation INT REFERENCES reservation(id)
+);
+
+CREATE TABLE IF NOT EXISTS client_activity (
+	id SERIAL PRIMARY KEY,
+	id_client INT REFERENCES client(id),
+	id_activity INT REFERENCES activity(id),
+	date TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW()
+);
