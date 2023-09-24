@@ -28,8 +28,7 @@ CREATE TABLE IF NOT EXISTS reservation (
 	id SERIAL PRIMARY KEY,
 	description VARCHAR(255),
 	id_client INT REFERENCES client(id),
-	date DATE NOT NULL,
-	hour FLOAT,
+	date TIMESTAMP NOT NULL,
 	employee VARCHAR(50)
 );
 
