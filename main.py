@@ -81,17 +81,17 @@ if __name__ == '__main__':
                 print("Novo email: ")
                 clientByID.email = input()
 
-            print("Data de nascimento atual é '"+clientByID.birth_date+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
-            opt = int(input())
-            if opt == 1:
-                print("Nova data de nascimento: ")
-                clientByID.birth_date = input()
-
-            print("CPF atual é '"+str(clientByID.birth_date)+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
+            print("Data de nascimento atual é '"+str(clientByID.birth_date)+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
             opt = int(input())
             if opt == 1:
                 print("Nova data de nascimento (YYYY-MM-DD): ")
                 clientByID.birth_date = input()
+
+            print("CPF atual é '"+clientByID.cpf+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
+            opt = int(input())
+            if opt == 1:
+                print("Novo cpf:")
+                clientByID.cpf = input()
 
             clientRepo.update(clientByID)
             print("Cliente atualizado com sucesso!")
