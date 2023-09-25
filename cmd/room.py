@@ -2,7 +2,7 @@ from repository.room import RoomRepository
 from entity.room import Room
 
 class RoomHandler:
-    repository: RoomtRepository = None
+    repository: RoomRepository = None
 
     def __init__(self):
         roomRepo = RoomRepository()
@@ -14,34 +14,36 @@ class RoomHandler:
         print("3 - Excluir quarto")
         print("4 - Atualizar quarto")
 
-    def handleOption(self, option: int)
-          if option == 1:
+    def handleOption(self, option: int):
+        if option == 1:
             newRoom = Room.new()
             print("Informe os dados do quarto:\n")
+            print("Nome:")
+            newRoom.name = input()
             print("Quantidade de camas:")
             newRoom.qty_beds = input()
             print("Quantidade de banheiros:")
             newRoom.qty_restrooms = input()
             print("Hidromassagem:")
-            newRoom.hidromassagem = input()
+            newRoom.hidromassagem = bool(input())
             print("Descrição:")
             newRoom.description = input()
             print("Valor:")
-            newRoom.value = input()
+            newRoom.price = input()
 
-            self.roomRepo.insert(newRoom)
+            self.repository.insert(newRoom)
             print("Quarto inserido com sucesso!")
 
         if option == 2:
             print("Quartos: ")
-            allroom = self.roomRepo.list()
+            allroom = self.repository.list()
             for room in allroom:
                 print(room)
 
         if option == 3:
             print("Informe o ID do quarto: ")
             id = input()
-            selfroomRepo.delete(id)
+            self.repository.delete(id)
             print("Quarto excluido com sucesso!")
 
     print("Saindo...")

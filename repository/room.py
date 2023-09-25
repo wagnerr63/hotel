@@ -13,8 +13,8 @@ class RoomRepository:
     def insert(self, room: Room):
         cursor = self.db.conn.cursor()
         cursor.execute(
-            "INSERT INTO room(qty_beds, qty_restrooms, hidromassagem, description, value) VALUES(%s, %s, %s, %s, %s);",
-            (room.qty_beds, room.qty_restrooms, room.hidromassagem, room.description, room.value))
+            "INSERT INTO room(name, qty_beds, qty_restrooms, hydromassage, description, price) VALUES(%s, %s, %s, %s, %s);",
+            (room.name, room.qty_beds, room.qty_restrooms, room.hidromassagem, room.description, room.price))
         self.db.conn.commit()
 
         cursor.close()

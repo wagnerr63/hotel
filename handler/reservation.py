@@ -74,13 +74,12 @@ class ReservationHandler:
                     print("Novo funcionário: ")
                     reservationByID.employer = input()
 
-                print("Descrição atual é '"+clientByID.cpf+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
+                print("Descrição atual é '"+reservationByID.description+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
                 opt = int(input())
                 if opt == 1:
-                    print("Novo cpf:")
-                    clientByID.cpf = input()
+                    print("Nova descrição:")
+                    reservationByID.description = input()
 
-                self.repository.update(clientByID)
-                print("Cliente atualizado com sucesso!")
+                self.repository.update(reservationByID)
+                print("Reserva atualizado com sucesso!")
 
-    print("Saindo...")

@@ -3,9 +3,10 @@ class Room:
     id: int = None
     qty_beds: int = ""
     qty_restrooms: int = ""
-    hidromassagem: bool = ""
+    hidromassagem: bool = False
     description: str = ""
-    value: float = ""
+    price: float = ""
+    name: str = ""
 
     @staticmethod
     def new():

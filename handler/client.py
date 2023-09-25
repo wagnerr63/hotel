@@ -10,10 +10,12 @@ class ClientHandler:
         self.repository = clientRepo
 
     def showClientOptions(self):
-        print("1 - Criar cliente")
-        print("2 - Listar clientes")
-        print("3 - Excluir cliente")
-        print("4 - Atualizar cliente")
+        print("CLIENTES")
+        print("1 - Criar")
+        print("2 - Listar")
+        print("3 - Excluir")
+        print("4 - Atualizar")
+        print("0 - Voltar")
 
 
     def handleOption(self, option: int):
