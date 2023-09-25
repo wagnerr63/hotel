@@ -6,7 +6,7 @@ from entity.activity import Activity
 from entity.client import Client
 from entity.room import Room
 
-if __name__ == '_main_':
+if __name__ == '__main__':
     db = Database()
     db.connect()
 
