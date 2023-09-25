@@ -34,3 +34,4 @@ class ActivityRepository:
         self.db.conn.commit()
 
         cursor.close()
+        
