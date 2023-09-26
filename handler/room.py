@@ -25,7 +25,7 @@ class RoomHandler:
             newRoom.qty_beds = input()
             print("Quantidade de banheiros:")
             newRoom.qty_restrooms = input()
-            print("Hidromassagem:")
+            print("Possui hidromassagem?: (1- Sim, 0 - Não)")
             newRoom.hidromassagem = bool(input())
             print("Descrição:")
             newRoom.description = input()
@@ -36,10 +36,11 @@ class RoomHandler:
             print("Quarto inserido com sucesso!")
 
         if option == 2:
-            print("Quartos: ")
-            allroom = self.repository.list()
-            for room in allroom:
-                print(room)
+            print("Quartos")
+            print("ID | Nome | Descricão | Qtd Camas | Qtd Banheiros | Possiu hidromassagem | Valor")
+            allrooms = self.repository.list()
+            for room in allrooms:
+                print(str(room[0])+" | "+room[1]+" | "+str(room[2])+" | "+str(room[3])+" | "+str(room[4])+" | "+str(room[5]))
 
         if option == 3:
             print("Informe o ID do quarto: ")
@@ -50,9 +51,14 @@ class RoomHandler:
         if option == 4:
             print("Informe o ID do quarto: ")
             id = input()
-            roomByID = self.repository.findByID(id)
+            try:
+                roomByID = self.repository.findByID(id)
+            except NameError as e:
+                if e.args[0] == "not_found":
+                    print("Quarto não encontrado com id "+id)
+                    return
 
-            print("Nome atual é '"+roomByID.name+"'. Deseja atualizar?")
+            print("Nome atual é '"+roomByID.name+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
             opt = int(input())
             if opt == 1:
                 print("Novo nome: ")
@@ -82,7 +88,7 @@ class RoomHandler:
                 print("Nova descrição: ")
                 roomByID.description = input()
 
-            print("Valor atual é '"+roomByID.price+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
+            print("Valor atual é '"+str(roomByID.price)+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
             opt = int(input())
             if opt == 1:
                 print("Novo valor:")

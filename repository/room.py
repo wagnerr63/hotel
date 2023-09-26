@@ -38,16 +38,34 @@ class RoomRepository:
     def findByID(self, id: int) -> Room:
         cursor = self.db.conn.cursor()
         cursor.execute("SELECT * FROM room WHERE id = %s;", (id))
-        client = cursor.fetchone()
+        room = cursor.fetchone()
         cursor.close()
 
+        if room is None:
+            raise NameError("not_found")
+
         roomByID = Room
-        roomByID.id = client[0]
-        roomByID.name = client[1]
-        roomByID.description = client[2]
-        roomByID.qty_beds = client[3]
-        roomByID.qty_restrooms = client[4]
-        roomByID.hidromassagem = client[5]
-        roomByID.price = client[6]
+        roomByID.id = room[0]
+        roomByID.name = room[1]
+        roomByID.description = room[2]
+        roomByID.qty_beds = room[3]
+        roomByID.qty_restrooms = room[4]
+        roomByID.hidromassagem = room[5]
+        roomByID.price = room[6]
  
         return roomByID
+
+    def update(self, room: Room):
+        cursor = self.db.conn.cursor()
+        cursor.execute(
+            "UPDATE room SET "
+            "name = %s, "
+            "description = %s, "
+            "qty_beds = %s, "
+            "qty_restrooms = %s, "
+            "hydromassage = %s, "
+            "price = %s WHERE id = %s;",
+            (room.name, room.description, room.qty_beds, room.qty_restrooms, room.hidromassagem, room.price, room.id))
+        self.db.conn.commit()
+
+        cursor.close()
