@@ -37,10 +37,10 @@ class RoomHandler:
 
         if option == 2:
             print("Quartos")
-            print("ID | Nome | Descricão | Qtd Camas | Qtd Banheiros | Possiu hidromassagem | Valor")
+            print("ID | Nome | Descricão | Qtd Camas | Qtd Banheiros | Possui hidromassagem | Valor")
             allrooms = self.repository.list()
             for room in allrooms:
-                print(str(room[0])+" | "+room[1]+" | "+str(room[2])+" | "+str(room[3])+" | "+str(room[4])+" | "+str(room[5]))
+                print(str(room[0])+" | "+room[1]+" | "+str(room[2])+" | "+str(room[3])+" | "+str(room[4])+" | "+str(room[5])+" | "+str(room[6]))
 
         if option == 3:
             print("Informe o ID do quarto: ")

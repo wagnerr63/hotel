@@ -10,14 +10,15 @@ class ReservationRepository:
         self.db = db
         self.db.connect()
 
-    def insert(self, reservation: Reservation):
+    def insert(self, reservation: Reservation) -> str:
         cursor = self.db.conn.cursor()
         cursor.execute(
-            "INSERT INTO reservation(id_client, name, date, employer, description) VALUES(%s, %s, %s, %s, %s);",
-            (reservation.id_client, reservation.name, reservation.date, reservation.employer, reservation.description))
+            "INSERT INTO reservation(id_client, date, employee, description) VALUES(%s, %s, %s, %s) RETURNING id;",
+            (reservation.id_client, reservation.date, reservation.employee, reservation.description))
         self.db.conn.commit()
-
+        id = cursor.fetchone()
         cursor.close()
+        return id[0]
 
     def list(self):
         cursor = self.db.conn.cursor()

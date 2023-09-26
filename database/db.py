@@ -6,8 +6,8 @@ class Database:
 
     def __init__(self):
         self.host = "localhost"
-        self.username = "root"
-        self.password = "root"
+        self.username = "person"
+        self.password = "person"
         self.port = "5432"
         self.dbname = "hotel"
         self.conn = None

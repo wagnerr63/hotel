@@ -25,12 +25,11 @@ class ClientRepository:
         clients = cursor.fetchall()
         cursor.close()
         return clients
-    
 
     def delete(self, id: int):
         cursor = self.db.conn.cursor()
         cursor.execute(
-            "DELETE FROM client WHERE id = %s",(id))
+            "DELETE FROM client WHERE id = %s", (id))
         self.db.conn.commit()
 
         cursor.close()
@@ -49,6 +48,9 @@ class ClientRepository:
         cursor.execute("SELECT * FROM client WHERE id = %s;", (id))
         client = cursor.fetchone()
         cursor.close()
+
+        if client is None:
+            raise NameError("not_found")
 
         clientByID = Client
         clientByID.id = client[0]
