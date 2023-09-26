@@ -9,10 +9,11 @@ class RoomHandler:
         self.repository = roomRepo
 
     def showRoomOptions(self):
-        print("1 - Criar quarto")
-        print("2 - Listar quarto")
-        print("3 - Excluir quarto")
-        print("4 - Atualizar quarto")
+        print("QUARTOS")
+        print("1 - Criar")
+        print("2 - Listar")
+        print("3 - Excluir")
+        print("4 - Atualizar")
 
     def handleOption(self, option: int):
         if option == 1:

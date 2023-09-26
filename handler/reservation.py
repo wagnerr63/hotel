@@ -10,10 +10,11 @@ class ReservationHandler:
         self.repository = reservationRepo
 
     def showReservationOptions(self):
-        print("1 - Criar reserva")
-        print("2 - Listar reserva")
-        print("3 - Excluir reserva")
-        print("4 - Atualizar reserva")
+        print("RESERVAS")
+        print("1 - Criar")
+        print("2 - Listar")
+        print("3 - Excluir")
+        print("4 - Atualizar")
 
     def handleOption(self, option: int):
         if option == 1:

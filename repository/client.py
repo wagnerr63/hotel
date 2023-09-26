@@ -21,7 +21,7 @@ class ClientRepository:
 
     def list(self):
         cursor = self.db.conn.cursor()
-        cursor.execute("SELECT * FROM client;")
+        cursor.execute("SELECT * FROM client LIMIT 50;")
         clients = cursor.fetchall()
         cursor.close()
         return clients

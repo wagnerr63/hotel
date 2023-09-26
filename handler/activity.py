@@ -9,10 +9,12 @@ class ActivityHandler:
         self.repository = activityRepo
 
     def showActivityOptions(self):
-        print("1 - Criar atividade")
-        print("2 - Listar atividades")
-        print("3 - Excluir atividade")
-        print("4 - Atualizar atividade")
+        print("ATIVIDADES")
+        print("1 - Criar")
+        print("2 - Listar")
+        print("3 - Excluir")
+        print("4 - Atualizar")
+        print("0 - Voltar")
 
     def handleOption(self, option: int):
         if option == 1:
@@ -25,25 +27,33 @@ class ActivityHandler:
             print("Descrição:")
             newActivity.description = input()
             
-            self.activityRepo.insert(newActivity)
+            self.repository.insert(newActivity)
             print("Atividade inserido com sucesso!")
 
         if option == 2:
             print("Atividades: ")
-            allActivity = self.activityRepo.list()
+            allActivity = self.repository.list()
+            print("ID | Nome | Descricão | Local ")
             for activity in allActivity:
-                print(activity)
+                print(str(activity[0])+" | "+activity[1]+" | "+activity[3]+" | "+activity[2])
+            print("--------")
 
         if option == 3:
             print("Informe o ID da atividade: ")
             id = input()
-            self.activityRepo.delete(id)
+            self.repository.delete(id)
             print("Atividade excluido com sucesso!")
 
         if option == 4:
             print("Informe o ID da atividade: ")
             id = input()
-            activityByID = self.repository.findByID(id)
+            try:
+                activityByID = self.repository.find_by_id(id)
+            except NameError as e:
+                if e.args[0] == "not_found":
+                    print("Atividade não encontrada com id "+str(id))
+                    return
+
 
             print("Nome atual é '"+activityByID.name+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
             opt = int(input())

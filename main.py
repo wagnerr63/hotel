@@ -20,7 +20,6 @@ if __name__ == '__main__':
         print("2 - Gerenciar Atividades")
         print("3 - Gerenciar Reservas")
         print("4 - Gerenciar Quartos")
-
         print("0 - Sair")
         option = int(input())
 

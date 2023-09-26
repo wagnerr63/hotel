@@ -21,7 +21,7 @@ class RoomRepository:
 
     def list(self):
         cursor = self.db.conn.cursor()
-        cursor.execute("SELECT * FROM room;")
+        cursor.execute("SELECT * FROM room LIMIT 50;")
         clients = cursor.fetchall()
         cursor.close()
         return clients

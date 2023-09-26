@@ -21,7 +21,7 @@ class ReservationRepository:
 
     def list(self):
         cursor = self.db.conn.cursor()
-        cursor.execute("SELECT * FROM reservation;")
+        cursor.execute("SELECT * FROM reservation LIMIT 50;")
         clients = cursor.fetchall()
         cursor.close()
         return clients
