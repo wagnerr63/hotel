@@ -84,9 +84,9 @@ class ReservationHandler:
 
         if option == 3:
             print("Informe o ID da reserva: ")
-            teste = input()
-            self.reservationRoomRepository.delete(id)
-            self.repository.delete(teste)
+            id = input()
+            self.reservationRoomRepository.delete_by_reservation_id(id)
+            self.repository.delete(id)
             print("Reserva excluida com sucesso!")
 
         # if option == 4:

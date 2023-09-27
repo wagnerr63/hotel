@@ -33,3 +33,12 @@ class ReservationRoomRepository:
         self.db.conn.commit()
 
         cursor.close()
+
+    def delete_by_reservation_id(self, id: int):
+        cursor = self.db.conn.cursor()
+        cursor.execute(
+            "DELETE FROM reservation_room WHERE id_reservation = %s", (id,))
+        self.db.conn.commit()
+
+        cursor.close()
+
