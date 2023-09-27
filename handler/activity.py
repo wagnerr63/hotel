@@ -1,12 +1,16 @@
 from repository.activity import ActivityRepository
 from entity.activity import Activity
+from entity.client_activity import ClientActivity
+from repository.client_activity import ClientActivityRepository
 
 class ActivityHandler:
     repository: ActivityRepository = None
+    clientActivity: ClientActivityRepository = None
 
     def __init__(self):
         activityRepo = ActivityRepository()
         self.repository = activityRepo
+        self.clientActivity = ClientActivityRepository()
 
     def showActivityOptions(self):
         print("ATIVIDADES")
@@ -14,6 +18,7 @@ class ActivityHandler:
         print("2 - Listar")
         print("3 - Excluir")
         print("4 - Atualizar")
+        print("5 - Registrar cliente atividade")
         print("0 - Voltar")
 
     def handleOption(self, option: int):
@@ -75,3 +80,21 @@ class ActivityHandler:
 
             self.repository.update(activityByID)
             print("Atividade atualizada com sucesso!")
+        
+        if option == 5:
+            new = ClientActivity
+            print("Informe o ID do cliente")
+            new.id_client = input()
+
+            print("Informe o ID da atividade")
+            new.id_activity = input()
+            try:
+                self.clientActivity.insert(new)
+            except Exception as e:
+                print(e)
+                print("Ocorreu um erro na operacao")
+                return
+            
+            print("Sucesso!")
+            
+

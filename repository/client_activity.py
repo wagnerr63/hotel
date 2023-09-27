@@ -34,3 +34,11 @@ class ClientActivityRepository:
         self.db.conn.commit()
 
         cursor.close()
+
+    def delete_by_client_id(self, id: int):
+        cursor = self.db.conn.cursor()
+        cursor.execute(
+            "DELETE FROM client_activity WHERE id_client = %s",(id,))
+        self.db.conn.commit()
+
+        cursor.close()
