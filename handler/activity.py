@@ -19,6 +19,7 @@ class ActivityHandler:
         print("3 - Excluir")
         print("4 - Atualizar")
         print("5 - Registrar cliente atividade")
+        print("6 - Excluir cliente atividade")
         print("0 - Voltar")
 
     def handleOption(self, option: int):
@@ -90,6 +91,26 @@ class ActivityHandler:
             new.id_activity = input()
             try:
                 self.clientActivity.insert(new)
+            except Exception as e:
+                print(e)
+                print("Ocorreu um erro na operacao")
+                return
+            
+            print("Sucesso!")
+
+        if option == 6:
+            print("Informe o ID do cliente")
+            id_client = input()
+
+            all = self.clientActivity.list_all_by_client(id_client)
+            print("ID | Nome | Data ")
+            for activity in all:
+                print(activity)
+
+            print("Informe o ID da atividade que deseja excluir")
+            id_activity = input()
+            try:
+                self.clientActivity.delete(id_activity)
             except Exception as e:
                 print(e)
                 print("Ocorreu um erro na operacao")

@@ -42,3 +42,10 @@ class ClientActivityRepository:
         self.db.conn.commit()
 
         cursor.close()
+
+    def list_all_by_client(self, id_client):
+        cursor = self.db.conn.cursor()
+        cursor.execute("SELECT ac.id, a.name, ac.date FROM client_activity AS ac INNER JOIN activity AS a ON a.id=ac.id_activity WHERE ac.id_client = %s;", (id_client,))
+        activities = cursor.fetchall()
+        cursor.close()
+        return activities
