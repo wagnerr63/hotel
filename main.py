@@ -3,6 +3,7 @@ from handler.client import ClientHandler
 from handler.activity import ActivityHandler
 from handler.reservation import ReservationHandler
 from handler.room import RoomHandler
+from handler.report import ReportsHandler
 
 if __name__ == '__main__':
     db = Database()
@@ -13,6 +14,7 @@ if __name__ == '__main__':
     activityHandler = ActivityHandler()
     reservationHandler = ReservationHandler()
     roomHandler = RoomHandler()
+    reportHandler = ReportsHandler()
 
     option = -1
     while option != 0:
@@ -20,6 +22,7 @@ if __name__ == '__main__':
         print("2 - Gerenciar Atividades")
         print("3 - Gerenciar Reservas")
         print("4 - Gerenciar Quartos")
+        print("5 - Gerar relatórios")
         print("0 - Sair")
         option = int(input())
 
@@ -44,6 +47,9 @@ if __name__ == '__main__':
             opt = int(input())
             roomHandler.handleOption(opt)
         
+        if option == 5:
+            reportHandler.ReportsOptions()
 
+            
 
     print("Saindo...")
