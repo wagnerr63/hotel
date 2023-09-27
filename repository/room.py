@@ -63,7 +63,7 @@ class RoomRepository:
             "description = %s, "
             "qty_beds = %s, "
             "qty_restrooms = %s, "
-            "hydromassage = %s, "
+            "hidromassagem = %s, "
             "price = %s WHERE id = %s;",
             (room.name, room.description, room.qty_beds, room.qty_restrooms, room.hidromassagem, room.price, room.id))
         self.db.conn.commit()

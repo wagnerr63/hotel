@@ -25,7 +25,7 @@ class ReservationHandler:
         print("1 - Criar")
         print("2 - Listar")
         print("3 - Excluir")
-        print("4 - Atualizar")
+        # print("4 - Atualizar")
 
     def handleOption(self, option: int):
         if option == 1:
@@ -39,10 +39,9 @@ class ReservationHandler:
                     self.clientRepository.findByID(newReservation.id_client)
                 except NameError as e:
                     if e.args[0] == "not_found":
-                        print("Cliente não encontrado com id "+newReservation.id_client+". Informe novamente")
+                        print("Cliente não encontrado com id " + newReservation.id_client + ". Informe novamente")
                 else:
                     valid = True
-
 
             print("Funcionário:")
             newReservation.employee = input()
@@ -64,15 +63,14 @@ class ReservationHandler:
             all_rooms = self.roomRepository.list()
             print("Quartos disponíveis")
             print("ID | Nome | Descricão | Qtd Camas | Qtd Banheiros | Possui hidromassagem | Valor")
-            for room  in all_rooms:
+            for room in all_rooms:
                 print(str(room[0]) + " | " + room[1] + " | " + str(room[2]) + " | " + str(room[3]) + " | " + str(
                     room[4]) + " | " + str(room[5]) + " | " + str(room[6]))
-
 
             for i in range(qty_rooms):
                 new_reservation_room = ReservationRoom
                 new_reservation_room.id_reservation = idReservation
-                print("Informe o ID do quarto "+str(i+1))
+                print("Informe o ID do quarto " + str(i + 1))
                 new_reservation_room.id_room = input()
                 self.reservationRoomRepository.insert(new_reservation_room)
 
@@ -84,52 +82,52 @@ class ReservationHandler:
             for reservation in allreservation:
                 print(reservation)
 
-            if option == 3:
-                print("Informe o ID da reserva: ")
-                id = input()
-                self.repository.delete(id)
-                print("Reserva excluida com sucesso!")
+        if option == 3:
+            print("Informe o ID da reserva: ")
+            teste = input()
+            self.reservationRoomRepository.delete(id)
+            self.repository.delete(teste)
+            print("Reserva excluida com sucesso!")
 
-            if option == 4:
-                print("Informe o ID da reserva: ")
-                id = input()
-                try:
-                    reservationByID = self.repository.findByID(id)
-                except NameError as e:
-                    if e.args[0] == "not_found":
-                        print("Reserva não encontrado.")
-                        return
-
-                print("ID do cliente atual é '"+reservationByID.id_client+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
-                opt = int(input())
-                if opt == 1:
-                    print("Novo ID do cliente: ")
-                    reservationByID.id_client = input()
-
-                print("Nome atual é '"+reservationByID.name+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
-                opt = int(input())
-                if opt == 1:
-                    print("Novo nome: ")
-                    reservationByID.name = input()
-
-                print("Data atual é '"+reservationByID.date+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
-                opt = int(input())
-                if opt == 1:
-                    print("Nova data: ")
-                    reservationByID.date = input()
-
-                print("Funcionário atual é '"+reservationByID.employer+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
-                opt = int(input())
-                if opt == 1:
-                    print("Novo funcionário: ")
-                    reservationByID.employer = input()
-
-                print("Descrição atual é '"+reservationByID.description+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
-                opt = int(input())
-                if opt == 1:
-                    print("Nova descrição:")
-                    reservationByID.description = input()
-
-                self.repository.update(reservationByID)
-                print("Reserva atualizado com sucesso!")
-
+        # if option == 4:
+        #     print("Informe o ID da reserva: ")
+        #     id = input()
+        #     try:
+        #         reservationByID = self.repository.findByID(id)
+        #     except NameError as e:
+        #         if e.args[0] == "not_found":
+        #             print("Reserva não encontrado.")
+        #             return
+        #
+        #     print("ID do cliente atual é '"+reservationByID.id_client+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
+        #     opt = int(input())
+        #     if opt == 1:
+        #         print("Novo ID do cliente: ")
+        #         reservationByID.id_client = input()
+        #
+        #     print("Nome atual é '"+reservationByID.name+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
+        #     opt = int(input())
+        #     if opt == 1:
+        #         print("Novo nome: ")
+        #         reservationByID.name = input()
+        #
+        #     print("Data atual é '"+reservationByID.date+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
+        #     opt = int(input())
+        #     if opt == 1:
+        #         print("Nova data: ")
+        #         reservationByID.date = input()
+        #
+        #     print("Funcionário atual é '"+reservationByID.employer+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
+        #     opt = int(input())
+        #     if opt == 1:
+        #         print("Novo funcionário: ")
+        #         reservationByID.employer = input()
+        #
+        #     print("Descrição atual é '"+reservationByID.description+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
+        #     opt = int(input())
+        #     if opt == 1:
+        #         print("Nova descrição:")
+        #         reservationByID.description = input()
+        #
+        #     self.repository.update(reservationByID)
+        #     print("Reserva atualizado com sucesso!")
