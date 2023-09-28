@@ -26,7 +26,11 @@ class RoomHandler:
             print("Quantidade de banheiros:")
             newRoom.qty_restrooms = input()
             print("Possui hidromassagem?: (1- Sim, 0 - Não)")
-            newRoom.hidromassagem = bool(input())
+            hidro = int(input())
+            if hidro == 1:
+                newRoom.hidromassagem = True
+            else:
+                newRoom.hidromassagem = False
             print("Descrição:")
             newRoom.description = input()
             print("Valor:")
