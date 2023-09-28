@@ -1,9 +1,9 @@
 # hotel
 Projeto de banco de dados - Aplicação de Hotel
 
-CÓDIGO
 
-- CRUD da tabela client_activity;
-- 3 Relatório do sistema;
-
-- CRUD: atividade, cliente, e quartos
+## Intruções para rodar o projeto
+- Criar o banco de dados 'hotel no seu postgres e executar as queries do arquivo 'database/migration/backup.sql'
+- Ter o python instalado
+- Instalar a biblioteca psycopg2 `pip install psycopg2`
+- Rodar o comando `python main.py` para iniciar o projeto

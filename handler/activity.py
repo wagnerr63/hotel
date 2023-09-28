@@ -32,8 +32,12 @@ class ActivityHandler:
             newActivity.local = input()
             print("Descrição:")
             newActivity.description = input()
-            
-            self.repository.insert(newActivity)
+            try:
+                self.repository.insert(newActivity)
+            except Exception:
+                print("Ocorreu um erro inesperado!")
+                return
+
             print("Atividade inserido com sucesso!")
 
         if option == 2:
@@ -47,7 +51,12 @@ class ActivityHandler:
         if option == 3:
             print("Informe o ID da atividade: ")
             id = input()
-            self.repository.delete(id)
+            try:
+                self.repository.delete(id)
+            except Exception:
+                print("Ocorreu um erro inesperado!")
+                return
+
             print("Atividade excluido com sucesso!")
 
         if option == 4:
