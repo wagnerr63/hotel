@@ -72,7 +72,11 @@ class ReservationHandler:
                 new_reservation_room.id_reservation = idReservation
                 print("Informe o ID do quarto " + str(i + 1))
                 new_reservation_room.id_room = input()
-                self.reservationRoomRepository.insert(new_reservation_room)
+                try:
+                    self.reservationRoomRepository.insert(new_reservation_room)
+                except Exception as e:
+                    print(e)
+                    print("Ocorreu um erro")
 
             print("Reserva inserida com sucesso!")
 

@@ -37,7 +37,7 @@ class RoomRepository:
 
     def findByID(self, id: int) -> Room:
         cursor = self.db.conn.cursor()
-        cursor.execute("SELECT * FROM room WHERE id = %s;", (id))
+        cursor.execute("SELECT * FROM room WHERE id = %s;", (id,))
         room = cursor.fetchone()
         cursor.close()
 
@@ -63,7 +63,7 @@ class RoomRepository:
             "description = %s, "
             "qty_beds = %s, "
             "qty_restrooms = %s, "
-            "hidromassagem = %s, "
+            "hydromassage = %s, "
             "price = %s WHERE id = %s;",
             (room.name, room.description, room.qty_beds, room.qty_restrooms, room.hidromassagem, room.price, room.id))
         self.db.conn.commit()

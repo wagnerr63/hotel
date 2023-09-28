@@ -33,25 +33,44 @@ class ClientHandler:
             print("Data de nascimento (YYYY-MM-DD):")
             newClient.birth_date = input()
 
-            self.repository.insert(newClient)
+            try:
+                self.repository.insert(newClient)
+            except Exception as e:
+                print(e)
+                print("Ocorreu um erro na operação.")
+                return
+
             print("Cliente inserido com sucesso!")
 
         if option == 2:
             print("Clientes: ")
-            allClients = self.repository.list()
-            for client in allClients:
-                print(client)
+            try:
+                allClients = self.repository.list()
+                for client in allClients:
+                    print(client)
+            except Exception as e:
+                print(e)
+                print("Ocorreu um erro na operação.")
+
 
         if option == 3:
             print("Informe o ID do cliente: ")
             id = input()
-            self.repository.delete(id)
+            try:
+                self.repository.delete(id)
+            except Exception:
+                print("Ocorreu um erro na operação.")
+                return
             print("Cliente excluido com sucesso!")
 
         if option == 4:
             print("Informe o ID do cliente: ")
             id = input()
-            clientByID = self.repository.findByID(id)
+            try:
+                clientByID = self.repository.findByID(id)
+            except Exception:
+                print("Ocorreu um erro na operação.")
+                return
 
             print("Nome atual é '"+clientByID.name+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
             opt = int(input())
@@ -83,5 +102,9 @@ class ClientHandler:
                 print("Novo cpf:")
                 clientByID.cpf = input()
 
-            self.repository.update(clientByID)
+            try:
+                self.repository.update(clientByID)
+            except Exception:
+                print("Ocorreu um erro na operação.")
+
             print("Cliente atualizado com sucesso!")

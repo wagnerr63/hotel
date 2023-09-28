@@ -38,7 +38,7 @@ class ActivityRepository:
 
     def find_by_id(self, id: int) -> Type[Activity]:
         cursor = self.db.conn.cursor()
-        cursor.execute("SELECT * FROM activity WHERE id = %s;", (id))
+        cursor.execute("SELECT * FROM activity WHERE id = %s;", (id,))
         client = cursor.fetchone()
         cursor.close()
 
