@@ -29,7 +29,7 @@ class ClientRepository:
     def delete(self, id: int):
         cursor = self.db.conn.cursor()
         cursor.execute(
-            "DELETE FROM client WHERE id = %s", (id))
+            "DELETE FROM client WHERE id = %s", (id,))
         self.db.conn.commit()
 
         cursor.close()
@@ -45,7 +45,7 @@ class ClientRepository:
 
     def findByID(self, id: int) -> Client:
         cursor = self.db.conn.cursor()
-        cursor.execute("SELECT * FROM client WHERE id = %s;", (id))
+        cursor.execute("SELECT * FROM client WHERE id = %s;", (id,))
         client = cursor.fetchone()
         cursor.close()
 
