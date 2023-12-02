@@ -57,9 +57,6 @@ VALUES
   ('Mariana Vieira', '(55) 33333-3333', 'mariana@example.com', '1992-07-30', '33333333306'),
   ('Rafael Ferreira', '(66) 4444-4444', 'rafael@example.com', '1988-02-12', '44444444407');
 
-INSERT INTO client (name, phone, email, birth_date, cpf)
-VALUES ('Maria Santos', '987-654-3210', 'maria@example.com', '1985-08-20', '98765432102');
-
 INSERT INTO room (name, description, qty_beds, qty_restrooms, hydromassage, price)
 VALUES ('Quarto Standard', 'Quarto confortável com TV e ar condicionado', 2, 1, false, 100.00);
 

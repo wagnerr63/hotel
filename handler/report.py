@@ -1,5 +1,5 @@
-from repository.reports import ReportsRepository
-from repository.client import ClientRepository
+from repository.postgres.reports import ReportsRepository
+from repository.postgres.client import ClientRepository
 
 class ReportsHandler:
     repository: ReportsRepository = None

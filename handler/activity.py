@@ -1,7 +1,7 @@
-from repository.activity import ActivityRepository
+from repository.postgres.activity import ActivityRepository
 from entity.activity import Activity
 from entity.client_activity import ClientActivity
-from repository.client_activity import ClientActivityRepository
+from repository.postgres.client_activity import ClientActivityRepository
 
 class ActivityHandler:
     repository: ActivityRepository = None

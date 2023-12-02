@@ -1,4 +1,4 @@
-from repository.room import RoomRepository
+from repository.postgres.room import RoomRepository
 from entity.room import Room
 
 class RoomHandler:

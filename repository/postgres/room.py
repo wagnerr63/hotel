@@ -30,7 +30,7 @@ class RoomRepository:
     def delete(self, id: int):
         cursor = self.db.conn.cursor()
         cursor.execute(
-            "DELETE FROM room WHERE id = %s",(id))
+            "DELETE FROM room WHERE id = %s",(id,))
         self.db.conn.commit()
 
         cursor.close()

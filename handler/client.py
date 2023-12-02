@@ -1,5 +1,5 @@
 from entity.client import Client
-from repository.client import ClientRepository
+from repository.postgres.client import ClientRepository
 
 
 class ClientHandler:

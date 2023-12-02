@@ -1,6 +1,8 @@
+import uuid
+
 
 class Activity:
-    id: int = None
+    id: str = None
     name: str = ""
     local: str = ""
     description: str = ""
@@ -8,5 +10,6 @@ class Activity:
     @staticmethod
     def new():
         activity = Activity
+        activity.id = uuid.uuid4().__str__()
         
         return activity
