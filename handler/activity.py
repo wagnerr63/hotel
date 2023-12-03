@@ -1,4 +1,4 @@
-from repository.postgres.activity import ActivityRepository
+from repository.neo.activity import ActivityRepository
 from entity.activity import Activity
 from entity.client_activity import ClientActivity
 from repository.postgres.client_activity import ClientActivityRepository
@@ -10,7 +10,7 @@ class ActivityHandler:
     def __init__(self):
         activityRepo = ActivityRepository()
         self.repository = activityRepo
-        self.clientActivity = ClientActivityRepository()
+        #self.clientActivity = ClientActivityRepository()
 
     def showActivityOptions(self):
         print("ATIVIDADES")

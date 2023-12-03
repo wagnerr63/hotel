@@ -9,39 +9,26 @@ from repository.neo.activity import ActivityRepository
 from entity.activity import Activity
 
 if __name__ == '__main__':
-    print("oi")
-
     neo4j = Neo4JDB()
     neo4j.connect()
-
-    activityRepo = ActivityRepository()
-    # newActivity = Activity.new()
-    # newActivity.name = "a"
-    # newActivity.local = "b"
-    # newActivity.description = "c"
-    # activityRepo.insert(newActivity)
-    activities = activityRepo.list()
-    print(activities)
-    activityRepo.delete('27909786-49e7-4263-9393-0c2d20b37ad8')
-    print(activityRepo.list())
 
 
 
     # clientHandler = ClientHandler()
-    # activityHandler = ActivityHandler()
+    activityHandler = ActivityHandler()
     # reservationHandler = ReservationHandler()
     # roomHandler = RoomHandler()
     # reportHandler = ReportsHandler()
 
-    # option = -1
-    # while option != 0:
+    option = -1
+    while option != 0:
     #     print("1 - Gerenciar Clientes")
-    #     print("2 - Gerenciar Atividades")
+        print("2 - Gerenciar Atividades")
     #     print("3 - Gerenciar Reservas")
     #     print("4 - Gerenciar Quartos")
     #     print("5 - Gerar relatórios")
     #     print("0 - Sair")
-    #     option = int(input())
+        option = int(input())
 
     #     if option == 1:
     #         clientHandler.showClientOptions()
@@ -49,10 +36,10 @@ if __name__ == '__main__':
     #         clientHandler.handleOption(opt)
 
 
-    #     if option == 2:
-    #        activityHandler.showActivityOptions()
-    #        opt = int(input())
-    #        activityHandler.handleOption(opt)
+        if option == 2:
+           activityHandler.showActivityOptions()
+           opt = int(input())
+           activityHandler.handleOption(opt)
 
     #     if option == 3:
     #        reservationHandler.showReservationOptions()
@@ -64,8 +51,8 @@ if __name__ == '__main__':
     #         opt = int(input())
     #         roomHandler.handleOption(opt)
         
-    #     if option == 5:
-    #         reportHandler.ReportsOptions()
+        # if option == 5:
+        #     reportHandler.ReportsOptions()
 
 
     neo4j.close()
