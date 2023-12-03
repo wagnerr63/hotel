@@ -11,6 +11,9 @@ from entity.activity import Activity
 if __name__ == '__main__':
     print("oi")
 
+    neo4j = Neo4JDB()
+    neo4j.connect()
+
     activityRepo = ActivityRepository()
     # newActivity = Activity.new()
     # newActivity.name = "a"
@@ -64,6 +67,6 @@ if __name__ == '__main__':
     #     if option == 5:
     #         reportHandler.ReportsOptions()
 
-            
 
+    neo4j.close()
     print("Saindo...")
