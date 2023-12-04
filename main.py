@@ -17,7 +17,7 @@ if __name__ == '__main__':
     clientHandler = ClientHandler()
     activityHandler = ActivityHandler()
     # reservationHandler = ReservationHandler()
-    # roomHandler = RoomHandler()
+    roomHandler = RoomHandler()
     # reportHandler = ReportsHandler()
 
     option = -1
@@ -25,7 +25,7 @@ if __name__ == '__main__':
         print("1 - Gerenciar Clientes")
         print("2 - Gerenciar Atividades")
     #     print("3 - Gerenciar Reservas")
-    #     print("4 - Gerenciar Quartos")
+        print("4 - Gerenciar Quartos")
     #     print("5 - Gerar relatórios")
         print("0 - Sair")
         option = int(input())
@@ -47,10 +47,10 @@ if __name__ == '__main__':
     #        opt = int(input())
     #        reservationHandler.handleOption(opt)
 
-    #     if option == 4:
-    #         roomHandler.showRoomOptions()
-    #         opt = int(input())
-    #         roomHandler.handleOption(opt)
+        if option == 4:
+            roomHandler.showRoomOptions()
+            opt = int(input())
+            roomHandler.handleOption(opt)
         
         # if option == 5:
         #     reportHandler.ReportsOptions()

@@ -1,4 +1,4 @@
-from repository.postgres.room import RoomRepository
+from repository.neo.room import RoomRepository
 from entity.room import Room
 
 class RoomHandler:
@@ -28,9 +28,9 @@ class RoomHandler:
             print("Possui hidromassagem?: (1- Sim, 0 - Não)")
             hidro = int(input())
             if hidro == 1:
-                newRoom.hidromassagem = True
+                newRoom.hydromassage = True
             else:
-                newRoom.hidromassagem = False
+                newRoom.hydromassage = False
             print("Descrição:")
             newRoom.description = input()
             print("Valor:")
@@ -68,7 +68,7 @@ class RoomHandler:
             print("Informe o ID do quarto: ")
             id = input()
             try:
-                roomByID = self.repository.findByID(id)
+                roomByID = self.repository.find_by_id(id)
             except NameError as e:
                 if e.args[0] == "not_found":
                     print("Quarto não encontrado com id "+id)
@@ -92,15 +92,15 @@ class RoomHandler:
                 print("Nova quantidade de banheiros: ")
                 roomByID.qty_restrooms = input()
 
-            print("Valor de hidromassagem atual é '"+str(roomByID.hidromassagem)+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
+            print("Valor de hidromassagem atual é '"+str(roomByID.hydromassage)+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
             opt = int(input())
             if opt == 1:
                 print("Novo valor de hidromassagem (1 - Sim, 0 Não): ")
                 hidro = int(input())
                 if hidro == 1:
-                    roomByID.hidromassagem = True
+                    roomByID.hydromassage = True
                 else:
-                    roomByID.hidromassagem = False
+                    roomByID.hydromassage = False
 
             print("Descrição atual é '"+roomByID.description+"'. Deseja atualizar? (1 - SIM, 0 - Não)")
             opt = int(input())

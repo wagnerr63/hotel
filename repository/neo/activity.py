@@ -29,7 +29,7 @@ class ActivityRepository:
 
     def update(self, activity: Activity):
         query = "MATCH (n:activity {id:$id}) SET n.name=$name, n.local=$local, n.description=$description"
-        result = self.db.session.run(query, parameters={'id': activity.id, 'name': activity.name, 'local': activity.local,
+        self.db.session.run(query, parameters={'id': activity.id, 'name': activity.name, 'local': activity.local,
                                                'description': activity.description})
 
     def find_by_id(self, id: str) -> Type[Activity]:

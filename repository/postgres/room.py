@@ -14,7 +14,7 @@ class RoomRepository:
         cursor = self.db.conn.cursor()
         cursor.execute(
             "INSERT INTO room(name, qty_beds, qty_restrooms, hydromassage, description, price) VALUES(%s, %s, %s, %s, %s, %s);",
-            (room.name, room.qty_beds, room.qty_restrooms, room.hidromassagem, room.description, room.price))
+            (room.name, room.qty_beds, room.qty_restrooms, room.hydromassage, room.description, room.price))
         self.db.conn.commit()
 
         cursor.close()
@@ -50,7 +50,7 @@ class RoomRepository:
         roomByID.description = room[2]
         roomByID.qty_beds = room[3]
         roomByID.qty_restrooms = room[4]
-        roomByID.hidromassagem = room[5]
+        roomByID.hydromassage = room[5]
         roomByID.price = room[6]
  
         return roomByID
