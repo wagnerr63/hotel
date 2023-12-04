@@ -14,7 +14,7 @@ if __name__ == '__main__':
 
 
 
-    # clientHandler = ClientHandler()
+    clientHandler = ClientHandler()
     activityHandler = ActivityHandler()
     # reservationHandler = ReservationHandler()
     # roomHandler = RoomHandler()
@@ -22,18 +22,18 @@ if __name__ == '__main__':
 
     option = -1
     while option != 0:
-    #     print("1 - Gerenciar Clientes")
+        print("1 - Gerenciar Clientes")
         print("2 - Gerenciar Atividades")
     #     print("3 - Gerenciar Reservas")
     #     print("4 - Gerenciar Quartos")
     #     print("5 - Gerar relatórios")
-    #     print("0 - Sair")
+        print("0 - Sair")
         option = int(input())
 
-    #     if option == 1:
-    #         clientHandler.showClientOptions()
-    #         opt = int(input())
-    #         clientHandler.handleOption(opt)
+        if option == 1:
+            clientHandler.showClientOptions()
+            opt = int(input())
+            clientHandler.handleOption(opt)
 
 
         if option == 2:

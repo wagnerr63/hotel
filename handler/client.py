@@ -1,5 +1,5 @@
 from entity.client import Client
-from repository.postgres.client import ClientRepository
+from repository.neo.client import ClientRepository
 
 
 class ClientHandler:
@@ -104,7 +104,8 @@ class ClientHandler:
 
             try:
                 self.repository.update(clientByID)
-            except Exception:
+            except Exception as e:
+                print(e)
                 print("Ocorreu um erro na operação.")
 
             print("Cliente atualizado com sucesso!")

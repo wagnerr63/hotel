@@ -1,14 +1,17 @@
+import uuid
+
 
 class Client:
-    id: int = None
+    id: str = ""
     name: str = ""
     email: str = ""
-    phone: str = "" 
+    phone: str = ""
     birth_date: str = ""
     cpf: str = ""
 
     @staticmethod
     def new():
-        user = Client
-        
-        return user
+        client = Client
+        client.id = uuid.uuid4().__str__()
+
+        return client
