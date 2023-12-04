@@ -38,6 +38,7 @@ if __name__ == '__main__':
 
         if option == 2:
            activityHandler.showActivityOptions()
+
            opt = int(input())
            activityHandler.handleOption(opt)
 
