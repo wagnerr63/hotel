@@ -1,6 +1,6 @@
-from repository.postgres.reservation import ReservationRepository
-from repository.postgres.client import ClientRepository
-from repository.postgres.room import RoomRepository
+from repository.neo.reservation import ReservationRepository
+from repository.neo.client import ClientRepository
+from repository.neo.room import RoomRepository
 from repository.postgres.reservation_room import ReservationRoomRepository
 from entity.reservation import Reservation
 from entity.reservation_room import ReservationRoom
@@ -25,7 +25,7 @@ class ReservationHandler:
         print("1 - Criar")
         print("2 - Listar")
         print("3 - Excluir")
-        # print("4 - Atualizar")
+        #print("4 - Atualizar")
 
     def handleOption(self, option: int):
         if option == 1:
