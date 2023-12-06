@@ -1,5 +1,7 @@
 from typing import Type
 
+import neo4j.exceptions
+
 from entity.activity import Activity
 from database.neo4jdb import Neo4JDB
 
@@ -13,9 +15,19 @@ class ActivityRepository:
         self.db.connect()
 
     def insert(self, activity: Activity):
-        query = "MATCH (a:activity) WITH a ORDER BY a.activityID DESC LIMIT 1 CREATE (n:activity {activityID:toString(toInteger(a.activityID)+1), name:$name, local:$local, description:$description})"
-        self.db.session.run(query, parameters={'name': activity.name, 'local': activity.local,
+        last_id = self.find_last_id()
+        activityID = last_id+1
+        query = "CREATE (n:activity {activityID:$activityID, name:$name, local:$local, description:$description})"
+        self.db.session.run(query, parameters={'activityID': activityID, 'name': activity.name, 'local': activity.local,
                                                'description': activity.description})
+
+    def find_last_id(self) -> int:
+        query = "match (n:activity) return n.activityID ORDER BY n.activityID DESC LIMIT 1"
+        result = self.db.session.run(query)
+        if not result.peek():
+            return 0
+        return int(result.single()[0])
+
 
     def list(self):
         query = "MATCH (n:activity) RETURN n.id, n.name, n.local, n.description LIMIT 100"
