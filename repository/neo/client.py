@@ -13,8 +13,9 @@ class ClientRepository:
         self.db.connect()
 
     def insert(self, client: Client):
-        query = "CREATE (n:client {id:$id, name:$name, phone:$phone, email:$email, birth_date:$birth_date, cpf:$cpf})"
-        self.db.session.run(query, parameters={'id': client.id, 'name': client.name, 'phone': client.phone,
+        query = ("MATCH (c:client) WITH c ORDER BY c.clientID DESC LIMIT 1 CREATE (n:client {clientID:toString(toInteger(c.id)+1), name:$name,"
+                 "phone:$phone, email:$email, birth_date:$birth_date, cpf:$cpf})")
+        self.db.session.run(query, parameters={'name': client.name, 'phone': client.phone,
                                                'email': client.email, 'birth_date': client.birth_date,
                                                'cpf': client.cpf})
 
@@ -34,7 +35,7 @@ class ClientRepository:
                                                'email': client.email, 'birth_date': client.phone, 'cpf': client.cpf})
 
     def findByID(self, id: int) -> Type[Client]:
-        query = "MATCH (n:client {id:$id}) RETURN n.id, n.name, n.phone, n.email, n.birth_date, n.cpf"
+        query = "MATCH (n:client {clientID:$id}) RETURN n.id, n.name, n.phone, n.email, n.birth_date, n.cpf"
         result = self.db.session.run(query, parameters={'id': id})
         row = result.values()[0]
 

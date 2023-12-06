@@ -13,8 +13,8 @@ class ActivityRepository:
         self.db.connect()
 
     def insert(self, activity: Activity):
-        query = "CREATE (n:activity {id:$id, name:$name, local:$local, description:$description})"
-        self.db.session.run(query, parameters={'id': activity.id, 'name': activity.name, 'local': activity.local,
+        query = "MATCH (a:activity) WITH a ORDER BY a.activityID DESC LIMIT 1 CREATE (n:activity {activityID:toString(toInteger(a.id)+1), name:$name, local:$local, description:$description})"
+        self.db.session.run(query, parameters={'name': activity.name, 'local': activity.local,
                                                'description': activity.description})
 
     def list(self):
@@ -33,7 +33,7 @@ class ActivityRepository:
                                                'description': activity.description})
 
     def find_by_id(self, id: str) -> Type[Activity]:
-        query = "MATCH (n:activity {id:$id}) RETURN n.id, n.name, n.local, n.description"
+        query = "MATCH (n:activity {activityID: $id}) RETURN n.id, n.name, n.local, n.description"
         result = self.db.session.run(query, parameters={'id': id})
         row = result.values()[0]
 

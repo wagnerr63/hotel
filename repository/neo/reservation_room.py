@@ -1,44 +1,24 @@
 from entity.reservation_room import ReservationRoom
-from database.db import Database
+from database.neo4jdb import Neo4JDB
 
 
 class ReservationRoomRepository:
-    db: Database = None
+    db: Neo4JDB = None
 
     def __init__(self):
-        db = Database()
+        db = Neo4JDB()
         self.db = db
         self.db.connect()
 
     def insert(self, reservation_room: ReservationRoom):
-        cursor = self.db.conn.cursor()
-        cursor.execute(
-            "INSERT INTO reservation_room(id_room, id_reservation) VALUES(%s, %s);",
-            (reservation_room.id_room, reservation_room.id_reservation))
-        self.db.conn.commit()
-
-        cursor.close()
+        return
 
     def list(self):
-        cursor = self.db.conn.cursor()
-        cursor.execute("SELECT * FROM reservation_room LIMIT 50;")
-        clients = cursor.fetchall()
-        cursor.close()
-        return clients
+        return
 
     def delete(self, id: int):
-        cursor = self.db.conn.cursor()
-        cursor.execute(
-            "DELETE FROM reservation_room WHERE id = %s", (id,))
-        self.db.conn.commit()
-
-        cursor.close()
+        return
 
     def delete_by_reservation_id(self, id: int):
-        cursor = self.db.conn.cursor()
-        cursor.execute(
-            "DELETE FROM reservation_room WHERE id_reservation = %s", (id,))
-        self.db.conn.commit()
-
-        cursor.close()
+        return
 

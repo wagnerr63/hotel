@@ -12,8 +12,8 @@ class ReservationRepository:
         self.db.connect()
 
     def insert(self, reservation: Reservation):
-        query = "CREATE (n:reservation {id:$id, id_client:$id_client, date:$date, employee:$employee, description:$description})"
-        self.db.session.run(query, parameters={'id': reservation.id, 'id_client': reservation.id_client, 'date': reservation.date,
+        query = "MATCH (r:reservation) WITH r ORDER BY r.reservationID DESC LIMIT 1  CREATE (n:reservation {reservationID:toString(toInteger(r.reservationID)+1), id_client:$id_client, date:$date, employee:$employee, description:$description})"
+        self.db.session.run(query, parameters={'id_client': reservation.id_client, 'date': reservation.date,
                                                'employee': reservation.employee, 'description': reservation.description})
         
     def list(self):
@@ -32,7 +32,7 @@ class ReservationRepository:
                                                'employee': reservation.employee, 'description': reservation.description})
 
     def findByID(self, id: int) -> Type[Reservation]:
-        query = "MATCH (n.reservation {id:$id}) RETURN n.id, n.id_client, n.date, n.employee, n.description"
+        query = "MATCH (n.reservation {reservationID:$id}) RETURN n.id, n.id_client, n.date, n.employee, n.description"
         result = self.db.session.run(query, parameters={'id': id})
         row = result.values()[0]
 
