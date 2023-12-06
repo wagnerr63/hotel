@@ -30,17 +30,17 @@ class ActivityRepository:
 
 
     def list(self):
-        query = "MATCH (n:activity) RETURN n.id, n.name, n.local, n.description LIMIT 100"
+        query = "MATCH (n:activity) RETURN n.activityID, n.name, n.local, n.description LIMIT 100"
         results = self.db.session.run(query)
         activities = results.values()
         return activities
 
     def delete(self, id: str):
-        query = "MATCH (n:activity {id:$id}) DELETE n"
+        query = "MATCH (n:activity {activityID:$id}) DELETE n"
         self.db.session.run(query, parameters={'id': id})
 
     def update(self, activity: Activity):
-        query = "MATCH (n:activity {id:$id}) SET n.name=$name, n.local=$local, n.description=$description"
+        query = "MATCH (n:activity {activityID:$id}) SET n.name=$name, n.local=$local, n.description=$description"
         self.db.session.run(query, parameters={'id': activity.id, 'name': activity.name, 'local': activity.local,
                                                'description': activity.description})
 
