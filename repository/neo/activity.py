@@ -13,7 +13,7 @@ class ActivityRepository:
         self.db.connect()
 
     def insert(self, activity: Activity):
-        query = "MATCH (a:activity) WITH a ORDER BY a.activityID DESC LIMIT 1 CREATE (n:activity {activityID:toString(toInteger(a.id)+1), name:$name, local:$local, description:$description})"
+        query = "MATCH (a:activity) WITH a ORDER BY a.activityID DESC LIMIT 1 CREATE (n:activity {activityID:toString(toInteger(a.activityID)+1), name:$name, local:$local, description:$description})"
         self.db.session.run(query, parameters={'name': activity.name, 'local': activity.local,
                                                'description': activity.description})
 
