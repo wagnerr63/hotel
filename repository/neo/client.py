@@ -13,24 +13,34 @@ class ClientRepository:
         self.db.connect()
 
     def insert(self, client: Client):
-        query = ("MATCH (c:client) WITH c ORDER BY c.clientID DESC LIMIT 1 CREATE (n:client {clientID:toString(toInteger(c.id)+1), name:$name,"
+        last_id = self.find_last_id()
+        client_id = last_id + 1
+        query = ("MATCH (c:client) WITH c ORDER BY c.clientID DESC LIMIT 1 CREATE (n:client {clientID:$clientID, "
+                 "name:$name,"
                  "phone:$phone, email:$email, birth_date:$birth_date, cpf:$cpf})")
-        self.db.session.run(query, parameters={'name': client.name, 'phone': client.phone,
+        self.db.session.run(query, parameters={'clientID': client_id, 'name': client.name, 'phone': client.phone,
                                                'email': client.email, 'birth_date': client.birth_date,
                                                'cpf': client.cpf})
 
+    def find_last_id(self) -> int:
+        query = "match (n:client) return n.clientID ORDER BY n.clientID DESC LIMIT 1"
+        result = self.db.session.run(query)
+        if not result.peek():
+            return 0
+        return int(result.single()[0])
+
     def list(self):
-        query = "MATCH (n:client) RETURN n.id, n.name, n.phone, n.email, n.birth_date, n.cpf LIMIT 100"
+        query = "MATCH (n:client) RETURN n.clientID, n.name, n.phone, n.email, n.birth_date, n.cpf LIMIT 100"
         results = self.db.session.run(query)
         clients = results.values()
         return clients
 
     def delete(self, id: int):
-        query = "MATCH (n:client {id:$id}) DELETE n"
+        query = "MATCH (n:client {clientID:$id}) DELETE n"
         self.db.session.run(query, parameters={'id': id})
 
     def update(self, client: Client):
-        query = "MATCH (n:client {id:$id}) SET n.name=$name, n.phone=$phone, n.email=$email, n.birth_date=$birth_date, n.cpf=$cpf"
+        query = "MATCH (n:client {clientID:$id}) SET n.name=$name, n.phone=$phone, n.email=$email, n.birth_date=$birth_date, n.cpf=$cpf"
         self.db.session.run(query, parameters={'id': client.id, 'name': client.name, 'phone': client.phone,
                                                'email': client.email, 'birth_date': client.phone, 'cpf': client.cpf})
 
