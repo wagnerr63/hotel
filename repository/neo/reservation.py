@@ -21,6 +21,8 @@ class ReservationRepository:
                                                'employee': reservation.employee,
                                                'description': reservation.description})
 
+        return reservation.id
+
     def find_last_id(self) -> int:
         query = "match (n:reservation) return n.reservationID ORDER BY n.reservationID DESC LIMIT 1"
         result = self.db.session.run(query)
@@ -35,18 +37,18 @@ class ReservationRepository:
         return reservations
 
     def delete(self, id: int):
-        query = "MATCH (n.reservation {reservationID:$id}) DELETE n"
+        query = "MATCH (n:reservation {reservationID:toInteger($id)}) DELETE n"
         self.db.session.run(query, parameters={'id': id})
 
     def update(self, reservation: Reservation):
-        query = "MATCH (n.reservation {reservationID:$id}) SET n.id_client=$id_client, n.date=$date, n.employee=$employee, n.description=$description"
+        query = "MATCH (n.reservation {reservationID:toInteger($id)}) SET n.id_client=$id_client, n.date=$date, n.employee=$employee, n.description=$description"
         self.db.session.run(query, parameters={'id': reservation.id, 'id_client': reservation.id_client,
                                                'date': reservation.date,
                                                'employee': reservation.employee,
                                                'description': reservation.description})
 
     def findByID(self, id: int) -> Type[Reservation]:
-        query = "MATCH (n.reservation {reservationID:$id}) RETURN n.id, n.id_client, n.date, n.employee, n.description"
+        query = "MATCH (n.reservation {reservationID:toInteger($id)}) RETURN n.reservationID, n.id_client, n.date, n.employee, n.description"
         result = self.db.session.run(query, parameters={'id': id})
         row = result.values()[0]
 
