@@ -36,16 +36,16 @@ class ClientRepository:
         return clients
 
     def delete(self, id: int):
-        query = "MATCH (n:client {clientID:$id}) DELETE n"
+        query = "MATCH (n:client {clientID:toInteger($id)}) DELETE n"
         self.db.session.run(query, parameters={'id': id})
 
     def update(self, client: Client):
-        query = "MATCH (n:client {clientID:$id}) SET n.name=$name, n.phone=$phone, n.email=$email, n.birth_date=$birth_date, n.cpf=$cpf"
+        query = "MATCH (n:client {clientID:toInteger($id)}) SET n.name=$name, n.phone=$phone, n.email=$email, n.birth_date=$birth_date, n.cpf=$cpf"
         self.db.session.run(query, parameters={'id': client.id, 'name': client.name, 'phone': client.phone,
                                                'email': client.email, 'birth_date': client.phone, 'cpf': client.cpf})
 
     def findByID(self, id: int) -> Type[Client]:
-        query = "MATCH (n:client {clientID:$id}) RETURN n.id, n.name, n.phone, n.email, n.birth_date, n.cpf"
+        query = "MATCH (n:client {clientID:toInteger($id)}) RETURN n.clientID, n.name, n.phone, n.email, n.birth_date, n.cpf"
         result = self.db.session.run(query, parameters={'id': id})
         row = result.values()[0]
 
