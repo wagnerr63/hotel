@@ -36,7 +36,7 @@ class ActivityRepository:
         return activities
 
     def delete(self, id: str):
-        query = "MATCH (n:activity {activityID:$id}) DELETE n"
+        query = "MATCH (n:activity {activityID:toInteger($id)}) DELETE n"
         self.db.session.run(query, parameters={'id': id})
 
     def update(self, activity: Activity):
@@ -45,7 +45,7 @@ class ActivityRepository:
                                                'description': activity.description})
 
     def find_by_id(self, id: str) -> Type[Activity]:
-        query = "MATCH (n:activity {activityID: $id}) RETURN n.id, n.name, n.local, n.description"
+        query = "MATCH (n:activity {activityID: toInteger($id)}) RETURN n.activityID, n.name, n.local, n.description"
         result = self.db.session.run(query, parameters={'id': id})
         row = result.values()[0]
 

@@ -15,7 +15,7 @@ class ClientRepository:
     def insert(self, client: Client):
         last_id = self.find_last_id()
         client_id = last_id + 1
-        query = ("MATCH (c:client) WITH c ORDER BY c.clientID DESC LIMIT 1 CREATE (n:client {clientID:$clientID, "
+        query = ("CREATE (n:client {clientID:$clientID, "
                  "name:$name,"
                  "phone:$phone, email:$email, birth_date:$birth_date, cpf:$cpf})")
         self.db.session.run(query, parameters={'clientID': client_id, 'name': client.name, 'phone': client.phone,

@@ -15,7 +15,7 @@ class RoomRepository:
     def insert(self, room: Room):
         last_id = self.find_last_id()
         room_id = last_id + 1
-        query = ("MATCH (r:room) WITH r ORDER BY r.roomID LIMIT 1 DESC CREATE (n:room {roomID:$roomID, name:$name, "
+        query = ("CREATE (n:room {roomID:$roomID, name:$name, "
                  "qty_beds:$qty_beds, qty_restrooms:$qty_restrooms, hydromassage:$hydromassage, "
                  "description:$description, price:$price})")
         self.db.session.run(query, parameters={'roomID': room_id, 'name': room.name, 'qty_beds': room.qty_beds,
