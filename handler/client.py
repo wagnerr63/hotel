@@ -44,6 +44,7 @@ class ClientHandler:
 
         if option == 2:
             print("Clientes: ")
+            print("ID | Nome | CPF | E-mail | Telefone | D. Nascimento ")
             try:
                 allClients = self.repository.list()
                 for client in allClients:
