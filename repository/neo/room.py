@@ -36,17 +36,17 @@ class RoomRepository:
         return rooms
 
     def delete(self, id: str):
-        query = "MATCH (n:room {roomID:$id}) DELETE n"
+        query = "MATCH (n:room {roomID:toInteger($id)}) DELETE n"
         self.db.session.run(query, parameters={'id': id})
 
     def update(self, room: Room):
-        query = "MATCH (n:room {roomID:$id}) SET n.name=$name, n.qty_beds=$qty_beds, n.qty_restrooms=$qty_restrooms, n.hydromassage=$hydromassage, n.description=$description, n.price=$price"
+        query = "MATCH (n:room {roomID:toInteger($id)}) SET n.name=$name, n.qty_beds=$qty_beds, n.qty_restrooms=$qty_restrooms, n.hydromassage=$hydromassage, n.description=$description, n.price=$price"
         self.db.session.run(query, parameters={'id': room.id, 'name': room.name, 'qty_beds': room.qty_beds,
                                                'qty_restrooms': room.qty_restrooms, 'hydromassage': room.hydromassage,
                                                'description': room.description, 'price': room.price})
 
     def find_by_id(self, id: str) -> Type[Room]:
-        query = "MATCH (n:room {roomID:$id}) RETURN n.id, n.name, n.description, n.qty_beds, n.qty_restrooms, n.hydromassage, n.price"
+        query = "MATCH (n:room {roomID:toInteger($id)}) RETURN n.roomID, n.name, n.description, n.qty_beds, n.qty_restrooms, n.hydromassage, n.price"
         result = self.db.session.run(query, parameters={'id': id})
         row = result.values()[0]
 
