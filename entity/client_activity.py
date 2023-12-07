@@ -1,6 +1,6 @@
 
 class ClientActivity:
-    id: int = None
+    id = None
     id_activity: int = ""
     id_client: int = ""
 

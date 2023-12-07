@@ -1,6 +1,6 @@
 
 class ReservationRoom:
-    id: int = None
+    id = None
     id_room: int = ""
     id_reservation: int = ""
 

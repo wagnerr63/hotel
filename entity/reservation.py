@@ -1,6 +1,6 @@
 
 class Reservation:
-    id: int = None
+    id= None
     id_client: int = ""
     date: str = ""
     employee: str = ""

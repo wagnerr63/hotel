@@ -1,7 +1,7 @@
 import uuid
 
 class Room:
-    id: str = None
+    id = None
     qty_beds: int = ""
     qty_restrooms: int = ""
     hydromassage: bool = False
@@ -12,7 +12,6 @@ class Room:
     @staticmethod
     def new():
         room = Room
-        room.id = uuid.uuid4().__str__()
 
         
         return room

@@ -2,7 +2,7 @@ import uuid
 
 
 class Client:
-    id: str = ""
+    id = None
     name: str = ""
     email: str = ""
     phone: str = ""
@@ -12,6 +12,5 @@ class Client:
     @staticmethod
     def new():
         client = Client
-        client.id = uuid.uuid4().__str__()
 
         return client
