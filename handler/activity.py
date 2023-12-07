@@ -1,7 +1,7 @@
 from repository.neo.activity import ActivityRepository
 from entity.activity import Activity
 from entity.client_activity import ClientActivity
-from repository.postgres.client_activity import ClientActivityRepository
+from repository.neo.client_activity import ClientActivityRepository
 
 class ActivityHandler:
     repository: ActivityRepository = None
@@ -10,7 +10,7 @@ class ActivityHandler:
     def __init__(self):
         activityRepo = ActivityRepository()
         self.repository = activityRepo
-        #self.clientActivity = ClientActivityRepository()
+        self.clientActivity = ClientActivityRepository()
 
     def showActivityOptions(self):
         print("ATIVIDADES")
@@ -34,8 +34,8 @@ class ActivityHandler:
             newActivity.description = input()
             try:
                 self.repository.insert(newActivity)
-            except Exception:
-                print("Ocorreu um erro inesperado!")
+            except Exception as e:
+                print("Ocorreu um erro inesperado!", e)
                 return
 
             print("Atividade inserido com sucesso!")
@@ -119,7 +119,7 @@ class ActivityHandler:
             print("Informe o ID da atividade que deseja excluir")
             id_activity = input()
             try:
-                self.clientActivity.delete(id_activity)
+                self.clientActivity.delete(id_activity, id_client)
             except Exception as e:
                 print(e)
                 print("Ocorreu um erro na operacao")
